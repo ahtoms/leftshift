@@ -1,0 +1,9 @@
+CREATE TABLE events (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	title TEXT NOT NULL,
+	description TEXT NOT NULL,
+	location TEXT NOT NULL,
+	tstamp INTEGER NOT NULL,	
+	pub_tstamp INTEGER NOT NULL,
+	img_loc TEXT NOT NULL
+);
