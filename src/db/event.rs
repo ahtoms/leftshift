@@ -1,6 +1,7 @@
 
 use chrono::{DateTime, TimeZone, Local, Utc};
 
+#[derive(Debug)]
 pub struct Event {
     id: u32,
     title: String,

@@ -13,9 +13,11 @@ fn index(_req: HttpRequest) -> HttpResponse {
             let mut events_buffer = String::new();
             let events = get_events(&connection, LIMIT);
             events_buffer.push_str(HEADER);
+            events_buffer.push_str("<body>");
             for e in events {
                 e.include_event_html(&mut events_buffer);
             }
+            events_buffer.push_str("</body>");
             events_buffer.push_str(FOOTER);
             HttpResponse::Ok().body(events_buffer)
         },

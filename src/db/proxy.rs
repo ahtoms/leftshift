@@ -3,7 +3,7 @@ use crate::db::event::Event;
 
 macro_rules! DB_DEFAULTS {
     (DB_PATH) => ("./lshift.db");
-    (DB_EVENT_LIMIT) => ("SELECT * FROM events LIMIT (?1);")
+    (DB_EVENT_LIMIT) => ("SELECT id, title, description, location, tstamp, pub_tstamp, img_loc FROM events LIMIT (?1);")
 }
 
 pub fn establish() -> Result<Connection> {
@@ -18,8 +18,8 @@ pub fn get_events(conn: &Connection, limit: u32) -> Vec<Event> {
                 Ok(
                     Event::new(row.get(0)?, 
                         row.get(1)?, row.get(2)?, 
-                        row.get(3)?, row.get(4)?, 
-                        row.get(5)?, row.get(6)?)
+                        row.get(3)?, row.get(6)?, 
+                        row.get(4)?, row.get(5)?)
                 ) 
             }) {
                 return events.filter_map(Result::ok).collect()
